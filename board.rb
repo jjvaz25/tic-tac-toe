@@ -48,7 +48,7 @@ class Board
 
   def game_over?
     p @board.all? do |spot|
-      spot == " "
+      spot != " "
     end
   end
 
