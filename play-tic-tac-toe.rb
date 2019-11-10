@@ -43,12 +43,12 @@ class Game
         puts "#{$player1_name}, make your move."
         @game_board.turn('X')
         @player1_turn = false
-        @game_board.game_over?
+        @game_over = true if @game_board.game_over?
       else
         puts "#{$player2_name}, make your move."
         @game_board.turn('O')
         @player1_turn = true
-        @game_board.game_over?
+        @game_over = true if @game_board.game_over?
       end
     end
   end

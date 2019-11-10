@@ -47,9 +47,12 @@ class Board
   end
 
   def game_over?
-    p @board.all? do |spot|
+    full_board = @board.all? do |spot|
       spot != " "
     end
+
+    puts "Game over: Tie game!" if full_board == true
+    result
   end
 
 end
