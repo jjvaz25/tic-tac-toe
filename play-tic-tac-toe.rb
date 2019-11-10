@@ -8,25 +8,51 @@ sleep(2)
 
 #player 1 inserts name and desired symbol to mark spaces
 puts "\nPlayer 1, what is your name?"
-player1_name = gets.chomp
-puts "\nHi #{player1_name}. You will mark your spaces using 'X'"
+$player1_name = gets.chomp
+puts "\nHi #{$player1_name}. You will mark your spaces using 'X'"
 sleep(2)
 
 #player 2 inserts name and desired symbol to mark spaces
 puts "\nPlayer 2, what is your name?"
-player2_name = gets.chomp
-puts "\nHi #{player2_name}. You will mark your spaces using 'O'"
+$player2_name = gets.chomp
+puts "\nHi #{$player2_name}. You will mark your spaces using 'O'"
 sleep(2)
 
+
 class Game 
+  attr_reader :player1_turn
+  attr_accessor :game_over
+  attr_accessor :player1_turn
+
   def initialize
-    @player1 = Player.new(player1_name, 'X')
-    @player2 = Player.new(player2_name, 'O')
-    
+    @player1_symbol = 'X'
+    @player2_symbol = 'O'
+    @player1 = Player.new($player1_name, @player1_symbol)
+    @player2 = Player.new($player2_name, @player1_symbol)
+    @game_board = Board.new
+    @game_over = false
+    @player1_turn = true
   end
+
+  def play
+    @game_board.draw_board
+    while @game_over != true
+      if @player1_turn
+        puts "#{$player1_name}, make your move."
+        @game_board.turn('X')
+        @player1_turn = false
+      else
+        puts "#{$player2_name}, make your move."
+        @game_board.turn('O')
+        @player1_turn = true
+      end
+    end
+  end
+
 end
 
-
+new_game = Game.new
+new_game.play
 
 
 
