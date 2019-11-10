@@ -10,11 +10,11 @@ class Board
       " ", " ", " ", 
       " ", " ", " "
     ]
-    # @winning_combos = [
-    #   [0,1,2], [3,4,5], [6,7,8], #horzontal wins
-    #   [0,3,6], [1,4,7], [2,5,8] #vertical wins
-    #   [0,4,8], [2,4,6]          #diag wins
-    # ]
+    @winning_combos = [
+      [0,1,2], [3,4,5], [6,7,8], #horzontal wins
+      [0,3,6], [1,4,7], [2,5,8], #vertical wins
+      [0,4,8], [2,4,6]          #diag wins
+    ]
   end
 
   def template
@@ -41,33 +41,15 @@ class Board
   end
 
   def turn (marker_symbol)
-    # puts "#{$player1_name}, make your move."
     move = gets.chomp.to_i
     @board[move - 1] = marker_symbol
     self.draw_board
-    #puts "#{$player2_name}, make your move."
-    #move = gets.chomp.to_i
-    #@board[move - 1] = 'O'
-    #self.draw_board
   end
 
-
-
-end
-
-=begin
-  def turn(symbol)
-    space_chosen = gets.chomp
-    p space_chosen
-    space_chosen = space_chosen.to_i
-    return board[space_chosen-1] = symbol
-  end
-=end
-=begin
-  def game_over?(symbol)
-    if (board[0] == symbol && board[1] == symbol && board[2] == symbol) ||
-      (board[3] == symbol && board[4] == symbol && board[5] == symbol) ||
-      (board[6] == symbol && board[7] == symbol && board[8] == symbol) ||
+  def game_over?
+    p @board.all? do |spot|
+      spot == " "
     end
   end
-=end
+
+end

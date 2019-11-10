@@ -21,6 +21,8 @@ sleep(2)
 
 class Game 
   attr_reader :player1_turn
+  attr_reader :player1_symbol
+  attr_reader :player2_symbol
   attr_accessor :game_over
   attr_accessor :player1_turn
 
@@ -41,10 +43,12 @@ class Game
         puts "#{$player1_name}, make your move."
         @game_board.turn('X')
         @player1_turn = false
+        @game_board.game_over?
       else
         puts "#{$player2_name}, make your move."
         @game_board.turn('O')
         @player1_turn = true
+        @game_board.game_over?
       end
     end
   end
