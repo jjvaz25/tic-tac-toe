@@ -41,9 +41,17 @@ class Board
   end
 
   def turn (marker_symbol)
-    move = gets.chomp.to_i
-    @board[move - 1] = marker_symbol
-    self.draw_board
+    valid_move = false
+    while valid_move != true
+      move = gets.chomp.to_i
+      if @board[move - 1] == " "
+        @board[move - 1] = marker_symbol
+        self.draw_board
+        valid_move = true
+      else
+        puts "That space is taken, please choose another"
+      end
+    end
   end
 
   def game_over(marker)
