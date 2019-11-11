@@ -39,16 +39,27 @@ class Game
   def play
     @game_board.draw_board
     while @game_over != true
+      if @game_board.game_over?("") == "Tie"
+        puts "Game over: Tie game!"
+        @game_over = true
+        return 
+      end
       if @player1_turn
         puts "#{$player1_name}, make your move."
         @game_board.turn('X')
         @player1_turn = false
-        @game_over = true if @game_board.game_over?
+        if @game_board.game_over?('X') == "Winner"
+          @game_over = true
+          puts "Game Over! #{$player1_name} wins!" 
+        end
       else
         puts "#{$player2_name}, make your move."
         @game_board.turn('O')
         @player1_turn = true
-        @game_over = true if @game_board.game_over?
+        if @game_board.game_over?('O') == "Winner"
+          @game_over = true
+          puts "Game Over! #{$player2_name} wins!" 
+        end
       end
     end
   end

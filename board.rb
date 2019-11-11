@@ -46,13 +46,22 @@ class Board
     self.draw_board
   end
 
-  def game_over?
+  def game_over?(marker)
+    @winning_combos.each do |combo|
+      match = combo.all? do |spot|
+        board[spot] == marker
+      end
+      if match 
+        return "Winner"
+      end
+    end
     full_board = @board.all? do |spot|
       spot != " "
     end
-
-    puts "Game over: Tie game!" if full_board == true
-    result
+    if full_board == true 
+      return "Tie"
+    end
+    
   end
 
 end
