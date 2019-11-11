@@ -46,7 +46,7 @@ class Board
     self.draw_board
   end
 
-  def game_over?(marker)
+  def game_over(marker)
     @winning_combos.each do |combo|
       match = combo.all? do |spot|
         board[spot] == marker
